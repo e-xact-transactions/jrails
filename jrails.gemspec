@@ -5,10 +5,10 @@
 
 Gem::Specification.new do |s|
   s.name = %q{jrails}
-  s.version = "0.6.0"
+  s.version = "0.7.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Aaron Eisenberger", "Patrick Hurley"]
+  s.authors = ["Aaron Eisenberger", "Patrick Hurley", "Brent Miller"]
   s.date = %q{2010-08-27}
   s.default_executable = %q{jrails}
   s.description = %q{Using jRails, you can get all of the same default Rails helpers for javascript functionality using the lighter jQuery library.}
@@ -20,18 +20,20 @@ Gem::Specification.new do |s|
   ]
   s.files = [
     "bin/jrails",
-     "javascripts/jquery/jquery-ui.js",
-     "javascripts/jquery/jquery-ui.min.js",
-     "javascripts/jquery/jquery.js",
-     "javascripts/jquery/jquery.min.js",
-     "javascripts/jrails/jrails.js",
-     "javascripts/jrails/jrails.min.js",
-     "lib/jrails.rb",
-     "lib/jrails/jquery_selector_assertions.rb",
-     "rails/init.rb",
-     "tasks/jrails.rake"
+    "assets/javascripts/jquery/jquery-ui.js",
+    "assets/javascripts/jquery/jquery-ui.min.js",
+    "assets/javascripts/jquery/jquery.js",
+    "assets/javascripts/jquery/jquery.min.js",
+    "assets/javascripts/jrails/jrails.js",
+    "assets/javascripts/jrails/jrails.min.js",
+    "lib/jrails.rb",
+    "lib/jrails/jquery_selector_assertions.rb",
+    "lib/jrails/asset_tag_ext.rb",
+    "init.rb",
+    "install.rb",
+    "lib/tasks/jrails.rake"
   ]
-  s.homepage = %q{http://ennerchi.com/projects/jrails}
+  s.homepage = %q{http://github.com/foliosus/jrails}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubyforge_project = %q{jrails}
