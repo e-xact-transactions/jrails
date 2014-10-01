@@ -63,6 +63,7 @@
 	$.fn.extend({ // Delayed observer for fields and forms
 		delayedObserver: function(delay, callback){
 			var el = $(this);
+      if (el.length == 0) return;
 			if (typeof window.delayedObserverStack == 'undefined') window.delayedObserverStack = [];
 			if (typeof window.delayedObserverCallback == 'undefined') {
 				window.delayedObserverCallback = function(stackPos) {

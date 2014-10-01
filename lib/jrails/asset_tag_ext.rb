@@ -2,7 +2,7 @@
 
 # jRails does NOT use jQuery.noConflict() by default
 # to use jQuery.noConflict() , use:
-# ActionView::Helpers::PrototypeHelper::JQUERY_VAR = 'jQuery'
+# ActionView::Helpers::JqueryHelper::JQUERY_VAR = 'jQuery'
 
 
 JRails.load_config
@@ -14,7 +14,7 @@ else
 end
 
 
-ActionView::Helpers::AssetTagHelper.module_eval do 
+ActionView::Helpers::AssetTagHelper.module_eval do
   def yield_authenticity_javascript
 <<JAVASCRIPT
 <script type='text/javascript'>
@@ -34,7 +34,7 @@ ActionView::Helpers::AssetTagHelper.module_eval do
  //]]>
 </script>
 JAVASCRIPT
-  end 
+  end
 
   def javascript_include_tag_with_jquery(*source)
     if source.first == :jrails
