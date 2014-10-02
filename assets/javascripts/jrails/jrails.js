@@ -7,18 +7,6 @@
 */
 
 (function($) {
-  $.extend( $.ajaxSettings, { accepts: { _default: "text/javascript, text/html, application/xml, text/xml, */*" }} );
-})(jQuery);
-
-/*
-*
-* jRails form extras
-* <aaron@ennerchi.com> | http://www.ennerchi.com
-*
-*/
-
-
-(function($) {
 	// reset a form
 	$.fn.reset = function() {
 		return this.each(function() {
