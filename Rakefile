@@ -4,7 +4,7 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "newrelic-jrails"
+    gem.name = "eita-jrails"
     gem.summary = "jRails is a drop-in jQuery replacement for the Rails Prototype/script.aculo.us helpers."
     gem.description = "Using jRails, you can get all of the same default Rails helpers for javascript functionality using the lighter jQuery library."
     gem.email = "brent@newrelic.com"
