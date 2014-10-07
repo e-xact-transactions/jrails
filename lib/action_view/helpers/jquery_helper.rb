@@ -1,5 +1,5 @@
-require 'action_view/helpers/proxies'
-require 'action_view/helpers/generator'
+require 'action_view/helpers/javascript_proxies'
+require 'action_view/helpers/jquery_helper/generator'
 
 module ActionView
   module Helpers

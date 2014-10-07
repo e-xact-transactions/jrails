@@ -1,3 +1,4 @@
+
 module ActionView
   module Helpers
 
@@ -51,27 +52,17 @@ module ActionView
           speed = js_options.delete :speed
         end
 
-        if ['fadeIn','fadeOut','fadeToggle'].include?(name)
-          #	090905 - Jake - changed ' to \" so it passes assert_select_rjs with an id
+        if %w[fadeIn fadeOut fadeToggle].include? name
           javascript = "#{JQUERY_VAR}(\"#{jquery_id(element_id)}\").#{name}("
           javascript << "#{speed}" unless speed.nil?
           javascript << ");"
         else
-          #	090905 - Jake - changed ' to \" so it passes "assert_select_rjs :effect, ID"
           javascript = "#{JQUERY_VAR}(\"#{jquery_id(element_id)}\").#{mode || 'effect'}('#{name}'"
           javascript << ",#{options_for_javascript(js_options)}" unless speed.nil? && js_options.empty?
           javascript << ",#{speed}" unless speed.nil?
           javascript << ");"
         end
 
-      end
-
-      def drop_receiving_element(element_id, options = {})
-        javascript_tag(drop_receiving_element_js(element_id, options).chop!)
-      end
-
-      def draggable_element(element_id, options = {})
-        javascript_tag(draggable_element_js(element_id, options).chop!)
       end
 
       def sortable_element(element_id, options = {})
@@ -127,8 +118,16 @@ module ActionView
         %(#{JQUERY_VAR}('#{jquery_id(element_id)}').sortable(#{options_for_javascript(options)});)
       end
 
+      def draggable_element(element_id, options = {})
+        javascript_tag(draggable_element_js(element_id, options).chop!)
+      end
+
       def draggable_element_js(element_id, options = {})
         %(#{JQUERY_VAR}("#{jquery_id(element_id)}").draggable(#{options_for_javascript(options)});)
+      end
+
+      def drop_receiving_element(element_id, options = {})
+        javascript_tag(drop_receiving_element_js(element_id, options).chop!)
       end
 
       def drop_receiving_element_js(element_id, options = {})
