@@ -5,40 +5,28 @@
 
 Gem::Specification.new do |s|
   s.name = %q{eita-jrails}
-  s.version = "0.9.0"
+  s.version = "0.9.1"
 
-  s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Aaron Eisenberger", "Patrick Hurley", "Brent Miller", "Braulio Bhavamitra"]
-  s.date = %q{2010-08-27}
+  s.date = %q{2014-10-06}
   s.default_executable = %q{jrails}
-  s.description = %q{Using jRails, you can get all of the same default Rails helpers for javascript functionality using the lighter jQuery library.}
-  s.email = %q{brent@newrelic.com}
+  s.summary = %q{jRails is a drop-in jQuery replacement for the prototope-rails gem.}
+  s.description = %q{Using jRails, you can still use RJS and Jquery/JqueryUi helpers with the same API as Prototype/Scryptaculous helpers.}
+  s.email = %q{braulio@eita.org.br}
+  s.homepage = %q{http://github.com/coletivoEITA/jrails}
   s.executables = ["jrails"]
   s.extra_rdoc_files = [
     "LICENSE",
-     "README.rdoc"
+    "README.md"
   ]
   s.files = [
     "bin/jrails",
-    "assets/javascripts/jquery/jquery-ui.js",
-    "assets/javascripts/jquery/jquery-ui.min.js",
-    "assets/javascripts/jquery/jquery.js",
-    "assets/javascripts/jquery/jquery.min.js",
-    "assets/javascripts/jrails/jrails.js",
-    "assets/javascripts/jrails/jrails.min.js",
-    "lib/jrails.rb",
-    "lib/jrails/jquery_selector_assertions.rb",
-    "lib/jrails/asset_tag_ext.rb",
-    "init.rb",
-    "install.rb",
-    "lib/tasks/jrails.rake"
-  ]
-  s.homepage = %q{http://github.com/coletivoEITA/jrails}
+  ] + Dir.glob('{assets,lib}/**/*')
+
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubyforge_project = %q{jrails}
   s.rubygems_version = %q{1.3.7}
-  s.summary = %q{jRails is a drop-in jQuery replacement for the Rails Prototype/script.aculo.us helpers.}
   s.specification_version = 3
 end
 

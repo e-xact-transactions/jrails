@@ -1,6 +1,7 @@
 $: << File.expand_path("..", __FILE__)
 
 module JRails
+
   @@config = {
     :google           => false,
     :jquery_version   => "1.7.2",
@@ -33,14 +34,9 @@ module JRails
   def self.jquery_path   ; @@jquery_path         ; end
   def self.jqueryui_path ; @@jqueryui_path       ; end
   def self.jqueryui_i18n_path ; @@jqueryui_i18n_path  ; end
+
 end
 
-require 'jrails/proxies'
-require 'jrails/helpers'
-require 'jrails/generator'
-require 'jrails/asset_tag_ext'
+require 'jrails/engine'
 require 'jrails/jquery_selector_assertions' if Rails.env.test?
-
-ActionView::Helpers::PrototypeHelper = ActionView::Helpers::JqueryHelper
-ActionView::Helpers::ScriptaculousHelper = ActionView::Helpers::JqueryUiHelper
 

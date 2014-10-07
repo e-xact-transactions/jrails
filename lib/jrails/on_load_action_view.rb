@@ -1,8 +1,8 @@
-require 'action_view/helpers/prototype_helper'
-require 'action_view/helpers/scriptaculous_helper'
+require 'action_view/helpers/jquery_helper'
+require 'action_view/helpers/jquery_ui_helper'
 require 'action_view/template/handlers/rjs'
-require 'prototype-rails/javascript_helper'
-require 'prototype-rails/rendering'
+require 'jrails/javascript_helper'
+require 'jrails/rendering'
 
 ActionView::Base.class_eval do
   cattr_accessor :debug_rjs
@@ -10,13 +10,17 @@ ActionView::Base.class_eval do
 end
 
 ActionView::Base.class_eval do
-  include ActionView::Helpers::PrototypeHelper
-  include ActionView::Helpers::ScriptaculousHelper
+  #require 'jrails/asset_tag_ext'
+  include ActionView::Helpers::JqueryHelper
+  include ActionView::Helpers::JqueryUiHelper
+  include ActionView::Helpers::JavaScriptHelper
 end
 
 ActionView::TestCase.class_eval do
-  include ActionView::Helpers::PrototypeHelper
-  include ActionView::Helpers::ScriptaculousHelper
+  #require 'jrails/asset_tag_ext'
+  include ActionView::Helpers::JqueryHelper
+  include ActionView::Helpers::JqueryUiHelper
+  include ActionView::Helpers::JavaScriptHelper
 end
 
 ActionView::Template.register_template_handler :rjs, ActionView::Template::Handlers::RJS.new

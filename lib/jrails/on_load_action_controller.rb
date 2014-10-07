@@ -1,2 +1,2 @@
-require 'prototype-rails/selector_assertions'
-require 'prototype-rails/renderers'
+require 'jrails/selector_assertions'
+require 'jrails/renderers'

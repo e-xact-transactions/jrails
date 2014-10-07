@@ -1,3 +1,4 @@
+require 'action_view/helpers/proxies'
 
 module ActionView
   module Helpers
