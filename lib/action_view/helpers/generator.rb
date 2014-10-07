@@ -320,6 +320,7 @@ module ActionView
           end
 
           private
+
           def jquery_id(id)
             id.to_s.count('#.*,>+~:[/ ') == 0 ? "##{id}" : id
           end
@@ -328,6 +329,53 @@ module ActionView
             Array(ids).map{|id| jquery_id(id)}.join(',')
           end
 
+          def loop_on_multiple_args(method, ids)
+            record(ids.size>1 ?
+                   "#{javascript_object_for(ids)}.each(#{method})" :
+                   "#{method}(#{javascript_object_for(ids.first)})")
+          end
+
+          def page
+            self
+          end
+
+          def record(line)
+            line = "#{line.to_s.chomp.gsub(/\;\z/, '')};"
+            self << line
+            line
+          end
+
+          def render(*options)
+            with_formats(:html) do
+              case option = options.first
+              when Hash
+                @context.render(*options)
+              else
+                option.to_s
+              end
+            end
+          end
+
+          def with_formats(*args)
+            return yield unless @context
+
+            lookup = @context.lookup_context
+            begin
+              old_formats, lookup.formats = lookup.formats, args
+              yield
+            ensure
+              lookup.formats = old_formats
+            end
+          end
+
+          def block_to_function(block)
+            generator = self.class.new(@context, &block)
+            literal("function() { #{generator.to_s} }")
+          end
+
+          def method_missing(method, *arguments)
+            JavaScriptProxy.new(self, method.to_s.camelize)
+          end
         end
       end
 

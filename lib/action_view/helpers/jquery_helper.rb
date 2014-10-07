@@ -444,6 +444,30 @@ module ActionView
         build_observer(form_id, options)
       end
 
+      # Yields a JavaScriptGenerator and returns the generated JavaScript code.
+      # Use this to update multiple elements on a page in an Ajax response.
+      # See JavaScriptGenerator for more information.
+      #
+      # Example:
+      #
+      #   update_page do |page|
+      #     page.hide 'spinner'
+      #   end
+      def update_page(&block)
+        JavaScriptGenerator.new(self, &block).to_s.html_safe
+      end
+
+      # Works like update_page but wraps the generated JavaScript in a
+      # <tt>\<script></tt> tag. Use this to include generated JavaScript in an
+      # ERb template. See JavaScriptGenerator for more information.
+      #
+      # +html_options+ may be a hash of <tt>\<script></tt> attributes to be
+      # passed to ActionView::Helpers::JavaScriptHelper#javascript_tag.
+      def update_page_tag(html_options = {}, &block)
+        javascript_tag update_page(&block), html_options
+      end
+
+
     protected
       def options_for_ajax(options)
         js_options = build_callbacks(options)
