@@ -37,6 +37,10 @@ module JRails
 
 end
 
+# rails pre 4.1 support
+ActiveSupport::ProxyObject = ActiveSupport::BasicObject unless defined? ActiveSupport::ProxyObject
+
 require 'jrails/engine'
 require 'jrails/selector_assertions' if Rails.env.test?
+
 

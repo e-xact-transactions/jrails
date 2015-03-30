@@ -3,7 +3,7 @@ module ActionView
 
     # Converts chained method calls on DOM proxy elements into JavaScript chains
     # copied from rails 3.0.20
-    class JavaScriptProxy < ActiveSupport::BasicObject #:nodoc:
+    class JavaScriptProxy < ActiveSupport::ProxyObject #:nodoc:
 
       def initialize(generator, root = nil)
         @generator = generator

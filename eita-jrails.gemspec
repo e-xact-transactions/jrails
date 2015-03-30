@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{eita-jrails}
-  s.version = "0.9.5"
+  s.version = "0.9.6"
   s.licenses = ['MIT']
 
   s.authors = ["Aaron Eisenberger", "Patrick Hurley", "Brent Miller", "Braulio Bhavamitra"]
@@ -12,8 +12,8 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/coletivoEITA/jrails}
 
   s.required_ruby_version = '>= 1.9.3'
-  s.add_runtime_dependency 'activesupport', '~> 3.2', '>= 3.0.0'
-  s.add_runtime_dependency 'actionpack', '~> 3.2', '>= 3.1.0'
+  s.add_runtime_dependency 'activesupport', '>= 3.0.0'
+  s.add_runtime_dependency 'actionpack', '>= 3.1.0'
 
   s.executables = ["jrails"]
   s.default_executable = %q{jrails}
