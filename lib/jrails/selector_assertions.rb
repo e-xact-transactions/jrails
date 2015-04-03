@@ -1,3 +1,6 @@
+# FIXME: support rails 4.2
+if Rails::VERSION::STRING < "4.2.0"
+
 require 'active_support/core_ext/module/aliasing'
 if Rails::VERSION::STRING < "4.1.0"
   require 'action_controller/vendor/html-scanner'
@@ -212,4 +215,6 @@ ActionDispatch::Assertions::SelectorAssertions.module_eval do
     unescaped.gsub!(RJS_PATTERN_UNICODE_ESCAPED_CHAR) {|u| [$1.hex].pack('U*')}
     unescaped
   end
+end
+
 end
