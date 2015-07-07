@@ -328,26 +328,26 @@ module ActionView
       # If you don't need to attach a form to a resource, then check out form_remote_tag.
       #
       # See FormHelper#form_for for additional semantics.
-      def remote_form_for(record_or_name_or_array, *args, &proc)
-        options = args.extract_options!
+      def remote_form_for record, options = {}, &block
+        as = options[:as]
 
-        case record_or_name_or_array
+        case record
         when String, Symbol
-          object_name = record_or_name_or_array
-        when Array
-          object = record_or_name_or_array.last
-          object_name = ActiveModel::Naming.singular(object)
-          apply_form_for_options!(record_or_name_or_array, options)
-          args.unshift object
+          object_name = record
+          object = nil
         else
-          object      = record_or_name_or_array
-          object_name = ActiveModel::Naming.singular(record_or_name_or_array)
-          apply_form_for_options!(object, options)
-          args.unshift object
+          object = if record.is_a? Array then record.last else record end
+          if Rails::VERSION::MAJOR >= 4
+            object_name = as || model_name_from_record_or_class(object).param_key
+            apply_form_for_options! record, object, options
+          else
+            object_name = as || ActiveModel::Naming.param_key(object)
+            apply_form_for_options! record, options
+          end
         end
 
         form_remote_tag options do
-          fields_for object_name, *(args << options), &proc
+          fields_for object, options, &block
         end
       end
       alias_method :form_remote_for, :remote_form_for
