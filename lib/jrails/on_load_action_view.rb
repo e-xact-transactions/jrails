@@ -10,7 +10,6 @@ ActionView::Base.class_eval do
 end
 
 ActionView::Base.class_eval do
-  #require 'jrails/asset_tag_ext'
   include ActionView::Helpers::JqueryHelper
   include ActionView::Helpers::JqueryUiHelper
   include ActionView::Helpers::JavaScriptHelper
@@ -19,7 +18,6 @@ end
 # ActionView::TestCase may crash if ActionController is not loaded
 ActiveSupport.on_load :action_controller do
   ActionView::TestCase.class_eval do
-    #require 'jrails/asset_tag_ext'
     include ActionView::Helpers::JqueryHelper
     include ActionView::Helpers::JqueryUiHelper
     include ActionView::Helpers::JavaScriptHelper

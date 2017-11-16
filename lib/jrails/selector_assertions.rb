@@ -10,7 +10,7 @@ end
 
 require 'action_dispatch/testing/assertions'
 if Rails::VERSION::STRING < "5.0.0"
-require 'action_dispatch/testing/assertions/selector'
+  require 'action_dispatch/testing/assertions/selector'
 end
 
 #--

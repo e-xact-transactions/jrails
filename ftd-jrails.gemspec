@@ -1,17 +1,17 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{eita-jrails}
-  s.version = "0.10.1"
+  s.name = %q{ftd-jrails}
+  s.version = "0.11.0"
   s.licenses = ['MIT']
 
-  s.authors = ["Aaron Eisenberger", "Patrick Hurley", "Brent Miller", "Braulio Bhavamitra"]
+  s.authors = ["Aaron Eisenberger", "Patrick Hurley", "Brent Miller", "Braulio Bhavamitra", "Donncha Redmond"]
   s.date = %q{2014-10-07}
   s.summary = %q{RJS and JqueryHelper/JqueryUiHelper with the same API from prototype-rails gem, for Rails 3.1+}
-  s.email = %q{braulio@eita.org.br}
-  s.homepage = %q{http://github.com/coletivoEITA/jrails}
+  s.email = %q{donncha@fintechdev.net}
+  s.homepage = %q{http://github.com/fintechdev/jrails}
 
-  s.required_ruby_version = '>= 1.9.3'
+  s.required_ruby_version = '>= 2.2'
   s.add_runtime_dependency 'activesupport', '>= 3.0.0'
   s.add_runtime_dependency 'actionpack', '>= 3.1.0'
 

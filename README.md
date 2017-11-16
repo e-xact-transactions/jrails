@@ -7,16 +7,16 @@ Based on prototype-rails gem.
 
 Support Rails 3.1+.
 
+I've removed the tasks which added the jQuery and jQueryUI JS files as they were done manually and in asset pipeline it's handled automatically by the jquery-rails and jquery-ui-rails gems.
+
 Install
 -------
 
 Add to your Gemfile
 
-    gem 'eita-jrails'
+    gem 'ftd-jrails'
 
 Project
 -------
 
-* https://github.com/coletivoEITA/jrails.git
-
-We a looking for new commiters!
+* https://github.com/fintechdev/jrails.git
