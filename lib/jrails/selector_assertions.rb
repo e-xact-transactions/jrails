@@ -185,6 +185,7 @@ module JRails::SelectorAssertions
     :insert_html          => "\(jQuery|$\)\\(#{RJS_ANY_ID}\\)\\.append\\(#{RJS_PATTERN_HTML}\\)",
     :replace              => "\(jQuery|$\)\\(#{RJS_ANY_ID}\\)\\.replaceWith\\(#{RJS_PATTERN_HTML}\\)",
     :insert_top           => "\(jQuery|$\)\\(#{RJS_ANY_ID}\\)\\.prepend\\(#{RJS_PATTERN_HTML}\\)",
+    :insert_after         => "\(jQuery|$\)\\(#{RJS_ANY_ID}\\)\\.after\\(#{RJS_PATTERN_HTML}\\)",
     :insert_bottom        => "\(jQuery|$\)\\(#{RJS_ANY_ID}\\)\\.append\\(#{RJS_PATTERN_HTML}\\)",
     :effect               => "\(jQuery|$\)\\(#{RJS_ANY_ID}\\)\\.effect\\(",
     :highlight            => "\(jQuery|$\)\\(#{RJS_ANY_ID}\\)\\.effect\\('highlight'"
@@ -235,7 +236,6 @@ module JRails::SelectorAssertions
       response_from_page_without_rjs
     end
   end
-  alias_method_chain :response_from_page, :rjs
 
   # Unescapes a RJS string.
   def unescape_rjs(rjs_string)

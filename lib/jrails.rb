@@ -4,8 +4,8 @@ module JRails
 
   @@config = {
     :google           => false,
-    :jquery_version   => "1.7.2",
-    :jqueryui_version => "1.9.1",
+    :jquery_version   => "3.2.1",
+    :jqueryui_version => "1.12.1",
     :compressed       => true
   }
 
