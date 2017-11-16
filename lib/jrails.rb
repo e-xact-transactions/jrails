@@ -8,4 +8,5 @@ end
 ActiveSupport::ProxyObject = ActiveSupport::BasicObject unless defined? ActiveSupport::ProxyObject
 
 require 'jrails/engine'
+require 'jrails/railtie'
 require 'jrails/selector_assertions' if Rails.env.test?
