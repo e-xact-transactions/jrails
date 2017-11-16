@@ -1,21 +1,31 @@
-# FIXME: support rails 4.2
-if Rails::VERSION::STRING < "4.2.0"
 
 require 'active_support/core_ext/module/aliasing'
-if Rails::VERSION::STRING < "4.1.0"
+if Rails::VERSION::STRING >= "4.2.0"
+  # uses nokogiri
+elsif Rails::VERSION::STRING < "4.1.0"
   require 'action_controller/vendor/html-scanner'
 else
   require 'action_view/vendor/html-scanner'
 end
+
 require 'action_dispatch/testing/assertions'
+if Rails::VERSION::STRING < "5.0.0"
 require 'action_dispatch/testing/assertions/selector'
+end
 
 #--
 # Copyright (c) 2006 Assaf Arkin (http://labnotes.org)
 # Under MIT and/or CC By license.
 #++
 
-ActionDispatch::Assertions::SelectorAssertions.module_eval do
+module JRails::SelectorAssertions
+
+  if Rails::VERSION::STRING >= "4.2.0"
+    def response_from_page
+      html_document.root
+    end
+  end
+
   # Selects content from the RJS response.
   #
   # === Narrowing down
@@ -122,12 +132,21 @@ ActionDispatch::Assertions::SelectorAssertions.module_eval do
       when :remove, :show, :hide, :toggle
         matches = @response.body.match(pattern)
       else
-        @response.body.gsub(pattern) do |match|
-          html = unescape_rjs(match)
+        if Rails::VERSION::STRING >= "4.2.0"
+          @response.body.gsub pattern do |match|
+            html = unescape_rjs match
+            matches ||= Nokogiri::HTML.fragment ''
+            Nokogiri::HTML(html).root.children.each{ |n| matches.add_child n if n.element? }
+            ""
+          end
+        else
+          @response.body.gsub pattern do |match|
+            html = unescape_rjs match
           matches ||= []
-          matches.concat HTML::Document.new(html).root.children.select { |n| n.tag? }
+            matches.concat HTML::Document.new(html).root.children.select{ |n| n.tag? }
           ""
         end
+    end
     end
 
     if matches
@@ -184,6 +203,20 @@ ActionDispatch::Assertions::SelectorAssertions.module_eval do
 
     if content_type && Mime::JS =~ content_type
       body = @response.body.dup
+      if Rails::VERSION::STRING >= "4.2.0"
+        root = Nokogiri::HTML.fragment ''
+
+        while true
+          next if body.sub!(RJS_STATEMENTS[:any]) do |match|
+            html = unescape_rjs match
+            Nokogiri::HTML(html).root.children.each{ |n| root.add_child n if n.element? }
+            ""
+          end
+          break
+        end
+
+        root
+      else
       root = HTML::Node.new(nil)
 
       while true
@@ -197,6 +230,7 @@ ActionDispatch::Assertions::SelectorAssertions.module_eval do
       end
 
       root
+      end
     else
       response_from_page_without_rjs
     end
@@ -217,4 +251,7 @@ ActionDispatch::Assertions::SelectorAssertions.module_eval do
   end
 end
 
+ActionDispatch::Assertions.module_eval do
+  include JRails::SelectorAssertions
+  alias_method_chain :response_from_page, :rjs
 end

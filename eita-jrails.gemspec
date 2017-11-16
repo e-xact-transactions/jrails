@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{eita-jrails}
-  s.version = "0.9.9"
+  s.version = "0.10.1"
   s.licenses = ['MIT']
 
   s.authors = ["Aaron Eisenberger", "Patrick Hurley", "Brent Miller", "Braulio Bhavamitra"]
