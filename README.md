@@ -5,7 +5,7 @@ jRails is a drop-in jQuery replacement for the prototope-rails gem, so that you 
 
 Based on prototype-rails gem.
 
-Support Rails 3.1+.
+Support Rails 4+.
 
 I've removed the tasks which added the jQuery and jQueryUI JS files as they were done manually and in asset pipeline it's handled automatically by the jquery-rails and jquery-ui-rails gems.
 
