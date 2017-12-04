@@ -498,9 +498,11 @@ module ActionView
           js_options['data'] = options[:with].gsub("Form.serialize(this.form)","#{JQUERY_VAR}.param(#{JQUERY_VAR}(this.form).serializeArray())")
         end
 
+        method_is_get = false
         js_options['type'] ||= "'post'"
         if options[:method]
-          if method_option_to_s(options[:method]) == "'put'" || method_option_to_s(options[:method]) == "'delete'"
+          case method_option_to_s(options[:method])
+          when "'put'", "'delete'"
             js_options['type'] = "'post'"
             if js_options['data']
               js_options['data'] << " + '&"
@@ -508,10 +510,12 @@ module ActionView
               js_options['data'] = "'"
             end
             js_options['data'] << "_method=#{options[:method]}'"
+          when "'get'"
+            method_is_get = true
           end
         end
 
-        if USE_PROTECTION && respond_to?('protect_against_forgery?') && protect_against_forgery?
+        if !method_is_get && USE_PROTECTION && respond_to?('protect_against_forgery?') && protect_against_forgery?
           if js_options['data']
             js_options['data'] << " + '&"
           else
