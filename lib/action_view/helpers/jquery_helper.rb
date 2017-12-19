@@ -247,6 +247,7 @@ module ActionView
       #     { :update => "posts", :url => { :action => "destroy", :id => post.id } },
       #     :href => url_for(:action => "destroy", :id => post.id)
       def link_to_remote(name, options = {}, html_options = nil)
+        ActiveSupport::Deprecation.warn("Deprecated a long time ago. Please try to use link_to(..., remote: true) instead!")
         link_to_function(name, remote_function(options), html_options || options.delete(:html))
       end
 
@@ -284,6 +285,7 @@ module ActionView
       #     <div><%= submit_tag 'Save' %></div>
       #   <% end -%>
       def form_remote_tag(options = {}, &block)
+        ActiveSupport::Deprecation.warn("Deprecated a long time ago. Please try to use form_tag(..., remote: true) instead!")
         options[:form] = true
 
         options[:html] ||= {}
@@ -429,6 +431,7 @@ module ActionView
       #
       #
       def observe_field(field_id, options = {})
+        ActiveSupport::Deprecation.warn("Deprecated a long time ago!")
         build_observer(field_id, options)
       end
 
@@ -441,6 +444,7 @@ module ActionView
       # +observe_field+. The JavaScript variable +value+ available to the
       # <tt>:with</tt> option is set to the serialized form by default.
       def observe_form(form_id, options = {})
+        ActiveSupport::Deprecation.warn("Deprecated a long time ago!")
         build_observer(form_id, options)
       end
 

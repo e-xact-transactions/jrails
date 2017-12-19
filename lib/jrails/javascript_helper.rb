@@ -60,6 +60,7 @@ module ActionView
       #       return false;">Show me more</a>
       #
       def link_to_function(name, *args, &block)
+        ActiveSupport::Deprecation.warn("Deprecated a long time ago. Attach a function via JS click event instead!")
         html_options = args.extract_options!.symbolize_keys
 
         function = block_given? ? update_page(&block) : args[0] || ''
