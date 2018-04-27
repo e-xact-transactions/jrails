@@ -487,9 +487,7 @@ module ActionView
       def options_for_ajax(options)
         js_options = build_callbacks(options)
 
-        url_options = options[:url]
-        url_options = url_options.merge(:escape => false) if url_options.is_a?(Hash)
-        js_options['url'] = "'#{url_for(url_options)}'"
+        js_options['url'] = "'#{url_for(options[:url])}'"
         js_options['async'] = false if options[:type] == :synchronous
         js_options['type'] = options[:method] ? method_option_to_s(options[:method]) : ( options[:form] ? "'post'" : nil )
         js_options['dataType'] = options[:datatype] ? "'#{options[:datatype]}'" : (options[:update] ? "'html'" : "'script'")
