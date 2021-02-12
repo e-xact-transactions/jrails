@@ -8,13 +8,13 @@ Gem::Specification.new do |s|
   s.authors = ["Aaron Eisenberger", "Patrick Hurley", "Brent Miller", "Braulio Bhavamitra", "Donncha Redmond"]
   s.email = %q{donncha@fintechdev.net}
   s.homepage = %q{http://github.com/fintechdev/jrails}
-  s.summary = %q{RJS and JqueryHelper/JqueryUiHelper with the same API from prototype-rails gem, for Rails 4+}
+  s.summary = %q{RJS and JqueryHelper/JqueryUiHelper with the same API from prototype-rails gem, for Rails 6+}
   s.license = 'MIT'
 
   s.required_ruby_version = '>= 2.2'
 
-  s.add_runtime_dependency 'activesupport', '>= 3.0.0'
-  s.add_runtime_dependency 'actionpack', '>= 3.1.0'
+  s.add_runtime_dependency 'activesupport', '>= 6.0.0'
+  s.add_runtime_dependency 'actionpack', '>= 6.0.0'
 
   s.files        = `git ls-files`.split("\n")
   s.executables  = `git ls-files -- bin/*`.split("\n").map { |f| File.basename(f) }
